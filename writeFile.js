@@ -10,19 +10,19 @@
 //     console.log('El archivo fueescrito exitosamente')
 // }
 
-// fs.writeFile('hola.txt','Hola a todos desde el nuevo archivo','utf-8', atTheEnd)
+// fs.writeFile('nuevo.txt','Hola a todos desde el nuevo archivo','utf-8', atTheEnd)
 
 
 
 //Ejercicio appendfile
-const fs = require('fs')
+// const fs = require('fs')
 
-function newAppend(err){
-    if (err){
-        console.log('Hubo un error')
-        return
-    }
-    console.log('El archivo fue escrito exitosamente')
-}
+// function newAppend(err){
+//     if (err){
+//         console.log('Hubo un error')
+//         return
+//     }
+//     console.log('El archivo fue escrito exitosamente')
+// }
 
-fs.appendFile('text.txt','Contenido del archivo appendFile',newAppend)
+// fs.appendFile('text.txt','Contenido del archivo appendFile',newAppend)
