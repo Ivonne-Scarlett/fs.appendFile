@@ -9,11 +9,7 @@ const muro = {
     pintado: false
 }
 
-function construir (unMuro){
-    setTimeout(() =>{
-        unMuro.construido = true        
-    },2000)
-}
+
 
 function construir(unMuro){
     return new Promise((resolve, reject) =>{
@@ -24,39 +20,44 @@ function construir(unMuro){
                 reject(new Error('No se pudo construir'))
                 return
             }
-            resolve(unmUro)
+            resolve(unMuro)
         },2000)
     })
 }
 
-const promesaDeConstruccion = construir(muro)
-promesaDeConstruccion
 
 
+function aplanar(unMuro){
+    return new Promise ((resolve, reject)=>{
+        setTimeout(() =>{
+            unMuro.aplanado = true
+
+            if(!unMuro.aplanado){
+                reject(new Error('No se pudo aplanar'))
+                return
+            }
+
+            resolve(unMuro)
+        },2000)
+
+    })
+}
 
 
+function pintar(unMuro){
+    return new Promise ((resolve, reject)=>{
+        setTimeout(() =>{
+            unMuro.pintado = true
+            if(!unMuro.pintado){
+                reject(new Error('No se pudo pintar'))
+                return
+            }
+            resolve(unMuro)
+        },2000)
+    })
+}
 
-// function aplanar(unMuroConstruido){
-//     unMuroConstruido.aplanado = true
-//     return unMuroConstruido
-// }
 
-// function pintar (unMuroAplanado){
-//     unMuroAplanado.pintado = true
-//     return unMuroAplanado
-// }
-
-// // const muroConstruido = construir(muro)
-// // const muroAplanado = aplanar(muroConstruido)
-// // const muroPintado = pintar(muroAplanado)
-// // console.log('Muro Pintado es:', muroPintado)
-
-// construir({ ... muro}, (error,muroConstruido) => {
-//     console.log('muro construido:', muroConstruido)
-//     console.log('error:', error)
-
-//     pintar(muroConstruido)
-// })
 
 //Promesas
 // new Promises((resolve, reject)=>{
@@ -65,3 +66,63 @@ promesaDeConstruccion
 //})
 
 //La promesa creada tendrá 2 metodos: then y catch
+//Then la promesa se resuelve
+//Catch la promesa es rechazada
+
+
+
+//Escrito de manera extensa
+// const promesaDeConstruccion = construir(muro)
+// promesaDeConstruccion
+//     .then((muroConstruido) =>{
+//         console.log('Muro construido;', muroConstruido)
+//         console.log('Promesa de construcción;', promesaDeConstruccion)
+//     })
+//     .catch((err) =>{
+//         console.error('Error;', err)
+//     })
+
+//Promises hell : promesas dentro de promesas dentro de promesas
+// construir(muro)
+//     .then((muroConstruido) =>{
+//         console.log('Muro construido;', muroConstruido)
+//         aplanar(muroConstruido)
+//             .then((muroAplanado)=>{
+//                 console.log('Muro aplanado;', muroAplanado)
+//                 pintar(muroAplanado)
+//                     .then((muroPintado)=>{
+//                         console.log('Muro pintado:', muroPintado)
+//                     })
+//                     .catch((err)=>{
+//                         console.error('Error;', err)
+//                     })
+//             })
+//             .catch((err)=>{
+//                 console.error('Error;', err)
+//             })
+//     })
+//     .catch((err) =>{
+//         console.error('Error;', err)
+//     })
+
+
+
+//async  await 
+//async : palabra reservada para marcar una función asyncrona (toda aquella que usa awair internamente)
+//await: palabra reservada para esperar la resolución de una promesa
+
+async function principal (){
+    const muroConstruido = await construir(muro)
+    const muroAplanado = await aplanar(muroConstruido)
+    const muroPintado = await pintar(muroAplanado)
+
+    console.log('Muro pintado:',muroPintado)
+}
+
+principal()
+    .then(() =>{
+        console.log('Fin')
+    })
+    .catch((err) =>{
+        console.log('Error', err)
+    })
