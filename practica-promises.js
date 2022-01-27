@@ -33,9 +33,7 @@ fs.writeFile(file, 'Nueva línea del archivo', 'utf8')
 // async function main(){
 //     await fs.writeFile('text-async-await.txt', 'primera línea','utf8')
 //     await fs.appendFile('text-async-await.txt', '\n Se agrega nueva linea','utf8')
-//     await setTimeout(() => {
-//         fs.unlink('text-async-await.txt')   
-//     }, 5000)    
+//     await setTimeout(() => {fs.unlink('text-async-await.txt')}, 5000) 
 // }
 
 // main()
